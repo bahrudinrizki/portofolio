@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"
+        <meta name="viewport" content="widht=device-width", initial-scale="1.0">
+        <title>document</title>
+    </head>
+    <body>
+        <input type="text" id="nilai" placeholder="Masukkan Nilai">
+        <br>
+        <button type="button" id="proses">Kirim</button>
+        <hr>
+        <div id="hasil"></div>
+    </body>
+</html>
+<script>
+    const btn = document.getElementById('proses')
+    btn.onclick = function(){
+        let nilai = parseInt(document.getElementById('nilai').value)
+        let predikat = ''
+        switch (true) {
+            case (nilai >= 90 && nilai <=100):
+            predikat = "A (Sangat Baik)";
+            break;
+            case (nilai >= 80 && nilai <= 90):
+                predikat = "B (Baik)";
+                break;
+            case (nilai >= 70 && nilai <= 80):
+                predikat = "C (Cukup)";
+                break;
+            case (nilai >= 60 && nilai <= 70):
+                predikat = "D (Kurang)";
+                break;
+            case (nilai >= 0 && nilai <= 60):
+                predikat = "E (Sangat Krunag)";
+                break;
+            default:
+                predikat = "nilai tidak valid"
+        }
+        document.getElementById('hasil').innerHTML = predikat
+    }
+</script>

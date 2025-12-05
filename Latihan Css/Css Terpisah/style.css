@@ -1,0 +1,13 @@
+body {
+    background-color: lightyellow;
+    font-family: verdana, sans-serif;
+}
+
+h1 {
+    color: darkgreen;
+    text-align: center;
+}
+p {
+    color: brown;
+    font-size: 18px;
+}

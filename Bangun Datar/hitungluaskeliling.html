@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Menghitung Luas & Keliling</title>
+</head>
+<body>
+  <h1>Menghitung Luas & Keliling Bangun Datar</h1>
+
+  <h3>Segitiga</h3>
+  Alas: <input type="text" id="alas"><br>
+  Tinggi: <input type="text" id="tinggi"><br>
+  Sisi 1: <input type="text" id="s1"><br>
+  Sisi 2: <input type="text" id="s2"><br>
+  Sisi 3: <input type="text" id="s3"><br>
+  <button onclick="hitungSegitiga()">Hitung Segitiga</button>
+  <p id="hasilSegitiga"></p>
+
+  <hr>
+
+  <h3>Persegi</h3>
+  Sisi: <input type="text" id="sisi"><br>
+  <button onclick="hitungPersegi()">Hitung Persegi</button>
+  <p id="hasilPersegi"></p>
+
+  <hr>
+
+  <h3>Persegi Panjang</h3>
+  Panjang: <input type="text" id="panjang"><br>
+  Lebar: <input type="text" id="lebar"><br>
+  <button onclick="hitungPersegiPanjang()">Hitung Persegi Panjang</button>
+  <p id="hasilPersegiPanjang"></p>
+
+  <script>
+    function hitungSegitiga() {
+      const alas = parseFloat(document.getElementById("alas").value);
+      const tinggi = parseFloat(document.getElementById("tinggi").value);
+      const s1 = parseFloat(document.getElementById("s1").value);
+      const s2 = parseFloat(document.getElementById("s2").value);
+      const s3 = parseFloat(document.getElementById("s3").value);
+
+      if (isNaN(alas) || isNaN(tinggi) || isNaN(s1) || isNaN(s2) || isNaN(s3)) {
+        document.getElementById("hasilSegitiga").innerText = "Isi semua data segitiga!";
+        return;
+      }
+
+      const luas = 0.5 * alas * tinggi;
+      const keliling = s1 + s2 + s3;
+
+      document.getElementById("hasilSegitiga").innerText =
+        `Luas = ${luas}, Keliling = ${keliling}`;
+    }
+
+    function hitungPersegi() {
+      const sisi = parseFloat(document.getElementById("sisi").value);
+
+      if (isNaN(sisi)) {
+        document.getElementById("hasilPersegi").innerText = "Masukkan panjang sisi!";
+        return;
+      }
+
+      const luas = sisi * sisi;
+      const keliling = 4 * sisi;
+
+      document.getElementById("hasilPersegi").innerText =
+        `Luas = ${luas}, Keliling = ${keliling}`;
+    }
+
+    function hitungPersegiPanjang() {
+      const panjang = parseFloat(document.getElementById("panjang").value);
+      const lebar = parseFloat(document.getElementById("lebar").value);
+
+      if (isNaN(panjang) || isNaN(lebar)) {
+        document.getElementById("hasilPersegiPanjang").innerText = "Masukkan panjang dan lebar!";
+        return;
+      }
+
+      const luas = panjang * lebar;
+      const keliling = 2 * (panjang + lebar);
+
+      document.getElementById("hasilPersegiPanjang").innerText =
+        `Luas = ${luas}, Keliling = ${keliling}`;
+    }
+  </script>

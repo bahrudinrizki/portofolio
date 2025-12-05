@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>Portofolio Bahrudin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">Portofolio</a>
+        <ul>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portofolio</a></li>
+            <li><a href="service.html">Informatika</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <h2>Selamat datang, <span id="namaUser"></span>!</h2>
+    <h4>Kelas: <span id="kelasUser"></span></h4>
+
+    <div class="bars-animation">
+        <div class="bar" style="--i:6;"></div>
+        <div class="bar" style="--i:5;"></div>
+        <div class="bar" style="--i:4;"></div>
+        <div class="bar" style="--i:3;"></div>
+        <div class="bar" style="--i:2;"></div>
+        <div class="bar" style="--i:1;"></div>
+    </div>
+
+    <section class="home">
+        <div class="home-info">
+            <h1>Udentify's Web</h1>
+            <h2> Saya Bahrudin Rizky dari kelas X RPL 2. Ini adalah contoh tampilan web untuk tugas yang diberikan oleh
+                guru mata pelajaran Rekayasa Perangkat Lunak. Pada halaman ini, saya menampilkan identitas diri,
+                penjelasan singkat mengenai tujuan pembuatan website, serta contoh penggunaan elemen-elemen dasar dalam
+                pengembangan web.
+
+                </p>
+                <div class="btn-sci">
+                    <a href="login.html" class="btn">Log In</a>
+                    <div class="sci">
+                        <a href="https://github.com/bahrudinrizki"><i class='bx bxl-github'></i></a>
+                        <a href="https://wa.me/62882008942586"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="https://www.instagram.com/brgz03_?utm_source=qr"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://www.tiktok.com/@artps03_?_r=1&_t=ZS-91lNJYXwjXM"><i
+                                class='bx bxl-tiktok'></i></a>
+                    </div>
+
+                </div>
+        </div>
+
+        <div class="home-img">
+            <div class="img-box">
+                <div class="img-item">
+                    <img src="img.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const nama = localStorage.getItem("namaUser");
+        const kelas = localStorage.getItem("kelasUser");
+
+        if (!nama) {
+            window.location.href = "login.html";
+        } else {
+            document.getElementById("namaUser").textContent = nama;
+            document.getElementById("kelasUser").textContent = kelas;
+        }
+    });
+</script>

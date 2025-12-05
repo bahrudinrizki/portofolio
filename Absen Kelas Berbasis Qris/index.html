@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Kelas QR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <h2>Absensi QR Kelas</h2>
+
+    <div id="login">
+
+        <button onclick="guruLogin()">Guru</button>
+        <button onclick="siswaLogin()">Siswa</button>
+    </div>
+
+    <div id="guruLogin" style="display:none;">
+        <p>Masukkan Kode Guru:</p>
+        <input type="password" id="kodeGuru" placeholder="Kode Guru">
+        <button onclick="cekGuru()">Masuk</button>
+    </div>
+
+    <div id="guruMenu">
+        <h2>👩‍🏫 QR Generator</h2>
+        <input type="text" id="kodeQR" placeholder="Masukkan Kode Absensi">
+        <button onclick="buatQR()">Buat QR</button>
+        <div id="qrcode"></div>
+
+    </div>
+
+    <div id="siswaMenu">
+        <h2>Scan QR untuk Absen</h2>
+        <input type="text" id="namaSiswa" placeholder="Nama lengkap">
+        <div id="reader"></div>
+        <p id="status">Siap untuk scan...
+        </p>
+    </div>
+
+    <div id="backButton" onclick="kembaliMenu()" style="
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #1c1c1e;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    color: white;
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+">
+        ← Back
+    </div>
+
+</body>
+<footer style=" width: 100%;text-align: center;padding: 15px 0;color: #888;font-size: 14px;margin-top: 40px;"> © 2025 M
+    Bahrudin Rizky Saputra — RPL 2</footer>
+
+</html>
+
+<style>
+    body {
+        background: #0f0f10;
+        color: hsl(0, 0%, 95%);
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #login {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 20px;
+        background: #1c1c1e;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        color: #4da6ff;
+    }
+
+    input,
+    button {
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 12px;
+        margin: 5px;
+    }
+
+    input {
+        background: #1c1c1e;
+        border: 1px solid #333;
+        color: white;
+        width: 250px;
+        text-align: center;
+    }
+
+    button {
+        background-color: #4da6ff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background-color: #368ce0;
+    }
+
+    #guruMenu,
+    #siswaMenu {
+        display: none;
+    }
+
+    #reader {
+        width: 300px;
+        margin: 20px auto;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    canvas {
+        margin-top: 25px;
+        border-radius: 12px;
+        background: #fff;
+        padding: 10px;
+    }
+</style>
+
+<script>
+    const KODE_GURU = "gurudisiplin";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZGZ52bTZZBxejQ7eWBlYfWwDopi3j7qFtoAuqlBKmbEwNBgzNghHqnSdvPKx8Eo0m_w/exec";
+
+    function guruLogin() {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("guruLogin").style.display = "block";
+        showBackButton();
+    }
+
+    function siswaLogin() {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("siswaMenu").style.display = "block";
+        showBackButton();
+        startScanner();
+    }
+
+    function cekGuru() {
+        const kode = document.getElementById("kodeGuru").value;
+        if (kode === KODE_GURU) {
+            document.getElementById("guruLogin").style.display = "none";
+            document.getElementById("guruMenu").style.display = "block";
+        } else {
+            alert("Kode salah!");
+        }
+    }
+
+    function buatQR() {
+        const isi = document.getElementById("kodeQR").value || "ABSEN-" + new Date().toLocaleDateString();
+        const qrContainer = document.getElementById("qrcode");
+        qrContainer.innerHTML = "";
+        QRCode.toCanvas(document.createElement("canvas"), isi, { width: 250 }, function (err, canvas) {
+            if (err) console.error(err);
+            qrContainer.appendChild(canvas);
+        });
+    }
+
+    function startScanner() {
+        const html5QrCode = new Html5Qrcode("reader");
+        html5QrCode.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            (decodedText) => {
+                const nama = document.getElementById("namaSiswa").value.trim();
+                if (!nama) {
+                    alert("Masukkan nama dulu!");
+                    return;
+                }
+                kirimAbsensi(nama, decodedText);
+                html5QrCode.stop();
+                document.getElementById("status").innerText = "Absen Terkirim!";
+            },
+            (err) => { }
+        );
+    }
+
+    function kirimAbsensi(nama, kode) {
+        const data = {
+            nama: nama,
+            waktu: new Date().toLocaleString(),
+            kode: kode
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        document.getElementById("status").innerText = "Absen terkirim!";
+    }
+
+    function showBackButton() {
+        document.getElementById("backButton").style.display = "block";
+    }
+
+    function hideBackButton() {
+        document.getElementById("backButton").style.display = "none";
+    }
+
+    function kembaliMenu() {
+        hideBackButton();
+        document.getElementById("guruMenu").style.display = "none";
+        document.getElementById("guruLogin").style.display = "none";
+        document.getElementById("siswaMenu").style.display = "none";
+        document.getElementById("login").style.display = "flex";
+    }
+</script>

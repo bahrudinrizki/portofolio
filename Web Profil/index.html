@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - Versi Animasi</title>
+    <!--Hubungkan CSS eksternal-->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Profil Saya</h1>
+        <p>Belajar HTML + CSS dengan Animasi & Hover</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#hobi">Hobi Saya</a></li>
+            <li><a href="#pendidikan">Riwayat Pendidikan</a></li>
+            <li><a href="#kontak">Info Kontak</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="tentang">
+            <h2>Tentang Saya</h2>
+            <img src="img.jpg" alt="Foto Profil Saya">
+            <p>Halo! Nama saya <strong>M Bahrudin Rizky Saputra</strong>. Saya sedang belajar membuat website
+                menggunakan HTML, CSS, dan JavaScript.</p>
+        </section>
+
+        <section id="hobi">
+            <h2>Hobi Saya</h2>
+            <ul>
+                <li>Menulis kode (Coding)</li>
+                <li>Mendengarkan Musik</li>
+                <li>Menonton Sepakbola</li>
+            </ul>
+        </section>
+
+        <section id="pendidikan">
+            <h2>Riwayat Pendidikan</h2>
+            <table>
+                <tr>
+                    <th>Tingkat</th>
+                    <th>Nama Sekolah</th>
+                    <th>Tahun</th>
+                </tr>
+                <tr>
+                    <td>SD</td>
+                    <td>SD Maarif Ponorogo</td>
+                    <td>2014 - 2020</td>
+                </tr>
+                <tr>
+                    <td>SMP</td>
+                    <td>Mts Fathulmuna</td>
+                    <td>2020 - 2021</td>
+                </tr>
+                <tr>
+                    <td>SMP</td>
+                    <td>Mts Darulhuda</td>
+                    <td>2021 - 2023</td>
+                </tr>
+                <tr>
+                    <td>SMP</td>
+                    <td>Mts Darulmuna</td>
+                    <td>2023 - 2024</td>
+                </tr>
+                <tr>
+                    <td>SMK</td>
+                    <td>SMKN 1 Ponorogo</td>
+                    <td>2025 - Sekarang</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="kontak">
+            <h2>Hubungi Saya</h2>
+            <form>
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" placeholder="Nama Lengkap">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Alamat email">
+
+                <label for="pesan">Pesan:</label>
+                <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis pesan..."></textarea>
+
+                <input type="submit" value="Kirim">
+            </form>
+
+            <p>Atau kunjungi <a href="https://instagram.com/brgz03/" target="_blank">Instagram saya</a></p>
+            <p><a href="https://tiktok.com/@artps03_" target="_blank">Tiktok saya</a></p>
+            <h3>Lokasi Saya</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!4v1762930823817!6m8!1m7!1sVePR3A4zexA1tRqLVHvdxg!2m2!1d-7.87812147262246!2d111.4733550388377!3f167.87278691739562!4f-24.59448367600652!5f0.7820865974627469"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Uden | Semua hak cipta dilindungi</p>
+    </footer>
+</body>
+
+</html>

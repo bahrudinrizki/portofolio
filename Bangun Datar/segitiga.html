@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <title>Menghitung Bangun Segitiga   
+        </title>
+    </head>
+    <body>
+        <h2>Menghitung Luas Dan Keliling Bangun Segitiga</h2>
+        Alas: <input type="number" id="alas"><br>
+        Tinggi: <input type="number" id="tinggi"><br>
+        Sisi 1: <input type="number" id="s1"><br>
+        Sisi 2: <input type="number" id="s2"><br>
+        Sisi 3: <input type="number" id="s3"><br>
+        <button onclick="itungS()">Hitung Segitiga</button>
+        <p id="hasilSegitiga"></p>
+    </body>
+<p id="hasil"></p>
+
+<script>
+    function itungS() {
+        let Alas = parseInt(document.getElementById("alas").value);
+        let Tinggi = parseInt(document.getElementById("tinggi").value);
+        let Sisi1 =parseInt(document.getElementById("s1").value);
+        let Sisi2 =parseInt(document.getElementById("s2").value);
+        let Sisi3 =parseInt(document.getElementById("s3").value);
+        let hasil = "";
+
+        if (Sisi1 && Sisi2 && Sisi3) {
+            let kelilingSegitiga = Sisi1 + Sisi2 + Sisi3;
+            hasil += "Keliling = " + kelilingSegitiga + "<br>"
+        }
+        if (Alas && Tinggi) {
+            let luasSegitiga = 0.5 * Alas * Tinggi;
+            hasil += "Luas = " + luasSegitiga + "<br>";
+        }
+        if (hasil === "") {
+            hasil = "Lengkap Kolom Dulu Boskuee!!";
+        }
+        
+        document.getElementById("hasil").innerHTML = hasil;
+    }
+</script>
+</html>

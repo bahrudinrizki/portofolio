@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menghitung Persegi dan Persegi Panjang</title>
+</head>
+
+<body>
+    <h2>Program Uden Menghitung <br> Persegi dan Persegi Panjang</h2>
+
+    <p><b>Input Nilai:</b></p>
+    Sisi Persegi: <input type="number" id="sisi"><br>
+    Panjang Persegi Panjang: <input type="number" id="panjang"><br>
+    Lebar Persegi Panjang: <input type="number" id="lebar"><br><br>
+
+    <button onclick="itungKabeh()">Hitung</button>
+
+    <p id="hasil"></p>
+
+    <script>
+        function itungKabeh() {
+
+            let sisi = parseInt(document.getElementById("sisi").value);
+            let panjang = parseInt(document.getElementById("panjang").value);
+            let lebar = parseInt(document.getElementById("lebar").value);
+            let hasil = "";
+
+            if (sisi) {
+                let luasPersegi = sisi * sisi;
+                let kelilingPersegi = 4 * sisi;
+                hasil += "Persegi:<br>";
+                hasil += "Luas = " + luasPersegi + "<br>";
+                hasil += "Keliling = " + kelilingPersegi + "<br><br>";
+            }
+            if (panjang && lebar) {
+                let luasPP = panjang * lebar;
+                let kelilingPP = 2 * (panjang + lebar);
+                hasil += "Persegi Panjang:<br>";
+                hasil += "Luas = " + luasPP + "<br>";
+                hasil += "Keliling = " + kelilingPP + "<br>";
+            }
+            if (hasil === "") {
+                hasil = "Lengkapi Kolom Dulu Bosskue!!";
+            }
+
+            document.getElementById("hasil").innerHTML = hasil;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=" 1.0">
+    <title>document</title>
+</head>
+
+<body>
+    <form id="frm-data">
+        <table>
+            <tr>
+                <td>Nama</td>
+                <td>
+                    <input type="text" name="nama" id="nama" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td>
+                    <input type="text" name="alamat" id="alamat" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <select name="jk" id="jk" required>
+                        <option value="">==Jenis Kelamin==</option>
+                        <option value="L">==Laki-Laki==</option>
+                        <option value="P">==Perempuan==</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Nama Kelas</td>
+                <td>
+                    <input type="text" name="nk" id="nk" required>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <button type="submit">Kirim</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table border="1" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Jenis Kelamin</th>
+                <th>Nama Kelas</th>
+            </tr>
+        </thead>
+        <tbody id="tampil-data">
+        </tbody>
+    </table>
+</body>
+
+</html>
+
+<script>
+    const arrData = new Map();
+    const frm = document.getElementById('frm-data')
+    frm.onsubmit = function (e) {
+        e.preventDefault();
+        const nama = document.getElementById('nama');
+        const alamat = document.getElementById('alamat');
+        const gender = document.getElementById('jk');
+        const NamaKelas = document.getElementById('nk');
+        arrData.set({ 'nama': nama.value, 'alamat': alamat.value, 'gender': gender.value, 'NamaKelas': NamaKelas.value});
+        nama.value = "";
+        alamat.value = "";
+        gender.value = "";
+        NamaKelas.value = "";
+        tampildata();
+    }
+    function tampildata() {
+        const res = Array.from(arrData).map((key) => (
+            `<tr>
+                <td>${key[0].nama}</td>
+                 <td>${key[0].alamat}</td>
+                  <td>${key[0].gender == "L" ? "Laki-Laki" : "Perempuan"}</td>
+                  <td>${key[0].NamaKelas}</td>
+                  </tr>`
+        )).join('')
+
+        document.getElementById('tampil-data').innerHTML = res;
+    }
+
+</script>

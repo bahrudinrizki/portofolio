@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="widht=device-widht" , initial-scale="1.0">
+    <title>Nomor Antrian</title>
+</head>
+
+<body>
+    Pilih Jenis Antrian :
+    <select id="jenis">
+        <option value="">==pilih jenis antrian==</option>
+        <option value="teller">Antrian teller</option>
+        <option value="cs">Antrian Customer Service</option>
+        <option value="pepek">Pengaduan</option>
+    </select>
+    <br>
+    <button type="button" id="proses">Proses</button>
+    <hr>
+    <div id="hasil" style="width: 100%;display:flex; flex-wrap: wrap;"></div>
+</body>
+
+</html>
+
+<script>
+    const btn = document.getElementById('proses')
+    const hasil = document.getElementById('hasil')
+    btn.onclick = function () {
+        let jenis = document.getElementById('jenis').value;
+        if (jenis === 'teller') {
+            let no = 100;
+            let i = 1;
+            let antrian = "";
+            for (i; i <= no; i++) {
+                antrian = antrian + "<div style='widht:100px; height:70px; border: 1px solid #000; text-align:center;'>Bank Abc <br> Antrian Teller <br> <span style='font-size:18pt; font-weight:bold';> A - " + i.toString() + "</span></div>";
+            }
+            hasil.innerHTML = antrian;
+        } else if (jenis === 'cs') {
+            let no = 50;
+            let i = 1;
+            let antrian = "";
+            for (i; i <= no; i++) {
+                antrian = antrian + "<div style='widht:100px; height:70px; border:1px solid #000; text-align:center; 'font-size:12pt;'>Bank Abc <br> Cust. Service <br> <span style='font-size:18pt'; font-weight:bold;'> B - " + i.toString() + "</span></div>";
+            }
+            hasil.innerHTML = antrian;
+        } else if (jenis === 'pepek') {
+            let no = 30;
+            let i = 1;
+            let antrian = "";
+            for (i; i <= no; i++) {
+                antrian = antrian + "<div style='widht:100px; height:70px; border:1px solid #000; text-align:center; 'font-size:12pt;'> Pengaduan <br> <span style='font-size:18pt'; font-weight:bold;'> C - " + i.toString() + "</span></div>";
+            }
+            hasil.innerHTML = antrian;
+        } else {
+            alert('jenis tidak ditemukan');
+        }
+    }
+
+
+</script>

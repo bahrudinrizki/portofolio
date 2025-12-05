@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF=8">
+        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" name="total" id="total" placeholder="total harga"><br>
+        <button type="button" id="proses">Hitung</button>
+        <hr>
+        <div id="hasil"></div>
+    </body>
+</html>
+<script>
+    const btn = document.getElementById('proses')
+    btn.onclick = function(){       
+        let harga = parseInt(document.getElementById('total').value)
+        let diskon = harga * 10/100
+    if (harga >= 100000){
+            
+            if (harga > 500000) {
+                    document.getElementById('hasil').innerHTML =
+                        "Selamat! Anda mendapatkan diskon 10% dan piring cantik.<br>" +
+                        "Total bayar: Rp " + bayar.toString()}
+
+    else {bayar = harga - diskon
+            document.getElementById('hasil').innerHTML = "selamat anda mendapatkan diskon <br>" + bayar.toString()}}
+           
+            
+            else {document.getElementById('hasil').innerHTML = "anda belum berhak mendapakan diskon <br>" + harga 
+                }
+    }
+</script>

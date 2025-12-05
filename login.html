@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Siswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-bg">
+
+    <div class="login-container">
+        <h2>Login Siswa</h2>
+
+        <form action="#">
+
+            <div class="input-box">
+                <label>Masukkan Nama</label>
+                <input type="text" id="username" name="nama" placeholder="Contoh: Budi Santoso" required>
+            </div>
+
+            <div class="input-box">
+                <label>Masukkan Nama Kelas</label>
+               <input type="text" id="kelas" name="kelas" placeholder="Contoh: X TKJ 1" required>
+            </div>
+
+
+            <button onclick="login()" class="btn-login" type="submit">Masuk</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbw-v04ShBu5SHnhelNmyBLioixZGCfLMV5ZE3TR5eVuczR5kU1K85mpwMcPq4N0fMiV/exec";
+
+document.querySelector("form").addEventListener("submit", e => {
+    e.preventDefault();
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: new FormData(document.querySelector("form"))
+    })
+    .then(res => alert("Berhasil mengirim data!"))
+    .catch(err => alert("Gagal mengirim data!"));
+});
+
+function login() {
+    const username = document.getElementById("username").value;
+    const kelas = document.getElementById("kelas").value;
+
+    if (username === "" || kelas === "") {
+        alert("Nama dan kelas harus diisi!");
+        return;
+    }
+
+    localStorage.setItem("namaUser", username);
+    localStorage.setItem("kelasUser", kelas);
+
+    window.location.href = "index.html";
+}
+</script>
